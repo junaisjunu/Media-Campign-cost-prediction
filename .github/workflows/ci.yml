@@ -16,7 +16,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Python
+      - name: Set up Python 3.8
         uses: actions/setup-python@v2
         with:
           python-version: 3.8
@@ -26,7 +26,57 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: check installation
+      - name: Check installation
+        run: |
+          pip list
+
+      - name: Run pytest
+        run: |
+          pytest tests/
+
+  flake8_and_pytest_windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check installation
+        run: |
+          pip list
+
+      - name: Run pytest
+        run: |
+          pytest tests/
+
+  flake8_and_pytest_macos:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Check installation
         run: |
           pip list
 

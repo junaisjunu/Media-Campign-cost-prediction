@@ -1,0 +1,10 @@
+pandas
+numpy
+seaborn
+mlflow==2.2.2
+dvc
+pytest
+flake8
+
+-e .
+

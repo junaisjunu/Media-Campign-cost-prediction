@@ -1,6 +1,6 @@
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
-from src.entity.config_entity import DataIngestionConfig
+from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig
 
 class Configuration:
     def __init__(self,config_path=CONFIG_FILE_PATH
@@ -21,6 +21,17 @@ class Configuration:
                             )
         
         return data_ingestion_config
+    
+    def get_data_transformation_config(self)-> DataTransformationConfig:
+        config=self.config.data_transformation
+        data_txm_config=DataTransformationConfig(
+            data_transformation_root=config.data_transformation_root,
+            data_path=config.data_path,
+            # transformed_data_path=config.transformed_data_path
+            # target=config.target
+        )
+
+        return data_txm_config
 
 
         

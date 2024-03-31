@@ -29,6 +29,9 @@ jobs:
       - name: Check installation
         run: |
           pip list
+      - name: Run main 
+        run: |
+          python main.py
 
       - name: Run pytest
         run: |
@@ -55,6 +58,10 @@ jobs:
         run: |
           pip list
 
+      - name: Run main 
+        run: |
+          python main.py
+
       - name: Run pytest
         run: |
           pytest tests/
@@ -79,6 +86,10 @@ jobs:
       - name: Check installation
         run: |
           pip list
+
+      - name: Run main 
+        run: |
+          python main.py
 
       - name: Run pytest
         run: |

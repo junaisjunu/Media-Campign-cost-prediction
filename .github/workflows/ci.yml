@@ -29,9 +29,14 @@ jobs:
       - name: Check installation
         run: |
           pip list
-      - name: Run main 
+
+      - name: DVC initialization
         run: |
-          python main.py
+          dvc init
+
+      - name: DVC run
+        run: |
+          dvc repro
 
       - name: Run pytest
         run: |
@@ -58,9 +63,13 @@ jobs:
         run: |
           pip list
 
-      - name: Run main 
+      - name: DVC initialization
         run: |
-          python main.py
+          dvc init
+
+      - name: DVC run
+        run: |
+          dvc repro
 
       - name: Run pytest
         run: |
@@ -87,9 +96,13 @@ jobs:
         run: |
           pip list
 
-      - name: Run main 
+      - name: DVC initialization
         run: |
-          python main.py
+          dvc init
+
+      - name: DVC run
+        run: |
+          dvc repro
 
       - name: Run pytest
         run: |

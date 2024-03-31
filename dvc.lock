@@ -1,0 +1,34 @@
+schema: '2.0'
+stages:
+  Data_ingestion:
+    cmd: python src/pipeline/stage_01_data_ingestion_pipeline.py
+    deps:
+    - path: src/pipeline/stage_01_data_ingestion_pipeline.py
+      hash: md5
+      md5: 28ac671139cff48de115bdc531380a20
+      size: 820
+    outs:
+    - path: artifacts/data_ingestion/data.csv
+      hash: md5
+      md5: 7d6e426dd79c0fa051cc7cc94353372d
+      size: 28756155
+  Data_Transformation:
+    cmd: python src/pipeline/stage_02_data_transformation_pipeline.py
+    deps:
+    - path: artifacts/data_ingestion/data.csv
+      hash: md5
+      md5: 7d6e426dd79c0fa051cc7cc94353372d
+      size: 28756155
+    - path: src/pipeline/stage_02_data_transformation_pipeline.py
+      hash: md5
+      md5: 6f1be4e71439048daef58e4ed693a1cd
+      size: 868
+    outs:
+    - path: artifacts/data_transformation/test.csv
+      hash: md5
+      md5: d937f9239a4ec49cdfa172e3d4fd06c0
+      size: 8735191
+    - path: artifacts/data_transformation/train.csv
+      hash: md5
+      md5: e1c421d369bbf02fef5f42ebd9f3a607
+      size: 20381539

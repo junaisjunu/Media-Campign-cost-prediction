@@ -1,6 +1,7 @@
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
-from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig
+from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig
+from pathlib import Path
 
 class Configuration:
     def __init__(self,config_path=CONFIG_FILE_PATH
@@ -15,7 +16,7 @@ class Configuration:
     def get_data_ingestion_config(self) -> DataIngestionConfig:
         config=self.config.data_ingestion
         data_ingestion_config=DataIngestionConfig(
-                            data_ingestion_root=config.data_ingestion_root,
+                            data_ingestion_root=Path(config.data_ingestion_root),
                             data_url=config.data_url,
                             data_path=config.data_path
                             )
@@ -25,13 +26,24 @@ class Configuration:
     def get_data_transformation_config(self)-> DataTransformationConfig:
         config=self.config.data_transformation
         data_txm_config=DataTransformationConfig(
-            data_transformation_root=config.data_transformation_root,
-            data_path=config.data_path,
+            data_transformation_root=Path(config.data_transformation_root),
+            data_path=Path(config.data_path),
             # transformed_data_path=config.transformed_data_path
             # target=config.target
         )
 
         return data_txm_config
+    
+    def get_model_trainer_config(self):
+        config=self.config.model_trainer
+        model_trainer_config=ModelTrainerConfig(
+        transformed_train_data=Path(config.transformed_train_data),
+        model_trainer_root= Path(config.model_trainer_root),
+        model_path= Path(config.model_path),
+        params=self.params,
+        target=config.target
+        )
+        return model_trainer_config
 
 
         

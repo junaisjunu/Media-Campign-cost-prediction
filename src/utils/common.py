@@ -8,6 +8,8 @@ from src import logger
 from ensure import ensure_annotations
 import os
 import json
+import pickle
+import xgboost as xgb
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -37,9 +39,35 @@ def save_json(path : Path, data : dict):
     except Exception as e:
         raise customexception(e,sys)
     
+@ensure_annotations
 def load_json(path: Path)-> ConfigBox:
     with open(path,"r") as f:
         content=json.load(f)
         logger.info(f"json file loaded successfully from {path}")
         return ConfigBox(content)
+    
+@ensure_annotations
+def save_model(model, path:Path):
+    try:
+        with open(path, "wb") as f:
+            pickle.dump(model,f)
+            logger.info(f"model saves successfully!")
+
+    except Exception as e:
+        raise customexception(e,sys)
+
+@ensure_annotations
+def load_model(path: Path):
+    try:
+        with open(path,"rb") as f:
+            model=pickle.load(f)
+        return model
+        logger.info(f"model loaded succesfully!")
+    except Exception as e:
+        raise(e,sys)
+    
+if __name__=="__main__":
+    model=xgb.XGBRFRegressor()
+    save_model(model,Path('artifacts/model.pkl'))
+
 

@@ -11,3 +11,11 @@ class DataIngestionConfig:
 class DataTransformationConfig:
     data_transformation_root: Path
     data_path: Path
+
+@dataclass
+class ModelTrainerConfig:
+    transformed_train_data: Path
+    model_trainer_root: Path
+    model_path: Path
+    params: str
+    target: str

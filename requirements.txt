@@ -11,6 +11,7 @@ ensure==1.0.2
 joblib
 types-PyYAML
 gdown
+xgboost
 
 -e .
 

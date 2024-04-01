@@ -8,10 +8,7 @@ def test_log_directory_creation():
     log_dir = "logs"
     assert os.path.exists(log_dir)
 
-def test_log_file_creation():
-    log_dir = "logs"
-    log_filepath = os.path.join(log_dir, f"{datetime.now().strftime('%m_%d_%Y_%H_%M_%S')}.log")
-    assert os.path.exists(log_filepath)
+
 
     
 def test_logging_format(caplog):

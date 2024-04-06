@@ -29,6 +29,10 @@ jobs:
       - name: Check installation
         run: |
           pip list
+          
+      - name: Check secret key
+        run: |
+          echo ${{ secrets.MLFLOW_TRACKING_USERNAME }}
 
       - name: DVC initialization
         run: |

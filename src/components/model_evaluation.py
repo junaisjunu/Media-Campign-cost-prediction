@@ -7,6 +7,8 @@ from src.entity.config_entity import ModelEvaluationConfig
 from src.excption.exception import customexception
 import sys
 from mlflow.models.signature import infer_signature
+from urllib.parse import urlparse
+import os
 
 class ModelEvaluation:
     def __init__(self,config: ModelEvaluationConfig) -> None:
@@ -40,11 +42,17 @@ class ModelEvaluation:
 
             }
             save_json(self.config.evaluation_score,eval_score)
+            # os.environ['MLFLOW_TRACKING_URI']='https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow'
+            
             # Set our tracking server uri for logging
-            mlflow.set_tracking_uri(uri="https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow")
+            # mlflow.set_tracking_uri(uri="https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow")
+            mlflow.set_registry_uri(uri="https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow")
 
+            tracking_url_type_store = urlparse(mlflow.get_tracking_uri()).scheme
+            logger.info(f"url = {tracking_url_type_store}")
 # Creat      a new MLflow Experiment
-            mlflow.set_experiment("Media Cost prediction Tracker")
+            mlflow.set_experiment("New test")
+            
 
 # Start     an MLflow run
             with mlflow.start_run():
@@ -55,14 +63,26 @@ class ModelEvaluation:
 
     # Infer the model signature
                 signature = infer_signature(model_input=X,model_output=y_pred)
+                if tracking_url_type_store != "file":
+
+
                 # Log the model
-                model_info = mlflow.xgboost.log_model(
-                    xgb_model=model,
-                    artifact_path="artifacts",
-                    signature=signature,
-                    input_example=X,
-                    registered_model_name="XGBoost model",
-                )
+                    model_info = mlflow.xgboost.log_model(
+                        xgb_model=model,
+                        artifact_path="artifacts",
+                        signature=signature,
+                        input_example=X,
+                        registered_model_name="XGBoost model",
+                    )
+                else:
+                     model_info = mlflow.xgboost.log_model(
+                        xgb_model=model,
+                        artifact_path="artifacts",
+                        signature=signature,
+                        input_example=X
+                        
+                    )
+
         except Exception as e:
             raise customexception(e,sys)
 

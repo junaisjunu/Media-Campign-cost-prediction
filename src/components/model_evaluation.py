@@ -1,0 +1,71 @@
+from src.utils.common import load_model,create_directories,save_json
+import pandas as pd
+from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score,mean_squared_log_error
+from src import logger
+import mlflow
+from src.entity.config_entity import ModelEvaluationConfig
+from src.excption.exception import customexception
+import sys
+from mlflow.models.signature import infer_signature
+
+class ModelEvaluation:
+    def __init__(self,config: ModelEvaluationConfig) -> None:
+        self.config=config
+        
+    def initiate_evaluation(self):
+        try:
+            model=load_model(self.config.model_path)
+            eval_data=pd.read_csv(self.config.test_data_path)
+            X=eval_data.drop(self.config.target,axis=1)
+            y_test=eval_data[self.config.target]
+            logger.info(self.config.params)
+            params=self.config.params
+            #model prediction
+            y_pred=model.predict(X)
+            create_directories([self.config.model_evaluation_root])
+            mae=mean_absolute_error(y_test,y_pred)
+            rmse=mean_squared_error(y_test,y_pred,squared=False)
+            r2=r2_score(y_test,y_pred)
+            rmlse=mean_squared_log_error(y_test,y_pred,squared=False)
+            logger.info(f" model - \n MAE = {mae} \n RMSE = {rmse} \n R2 Score = {r2} \n RMLSE = {rmlse} \n ============================")
+
+            metrics={"MAE":mae,
+                   "RMSE":rmse,
+                   "r2":r2,
+                   "rmlse":rmlse}
+
+            eval_score={
+                "Model Parms":params,
+                "evaluation metrics":metrics
+
+            }
+            save_json(self.config.evaluation_score,eval_score)
+            # Set our tracking server uri for logging
+            mlflow.set_tracking_uri(uri="https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow")
+
+# Creat      a new MLflow Experiment
+            mlflow.set_experiment("Media Cost prediction Tracker")
+
+# Start     an MLflow run
+            with mlflow.start_run():
+                mlflow.log_params(params)
+                mlflow.log_metrics(metrics)
+                
+                mlflow.set_tag("Training Info", "Xg boost model")
+
+    # Infer the model signature
+                signature = infer_signature(model_input=X,model_output=y_pred)
+                # Log the model
+                model_info = mlflow.xgboost.log_model(
+                    xgb_model=model,
+                    artifact_path="artifacts",
+                    signature=signature,
+                    input_example=X,
+                    registered_model_name="XGBoost model",
+                )
+        except Exception as e:
+            raise customexception(e,sys)
+
+
+    
+ 

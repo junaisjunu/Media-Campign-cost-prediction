@@ -96,6 +96,12 @@ jobs:
         run: |
           pip list
 
+      - name: Set up MLflow uri
+        run: |
+          export MLFLOW_TRACKING_USERNAME= ${{ secrets.MLFLOW_TRACKING_USERNAME }} \
+          export MLFLOW_TRACKING_PASSWORD= ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+          echo "set up completed"
+
       - name: DVC initialization
         run: |
           dvc init

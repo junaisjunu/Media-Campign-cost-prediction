@@ -2,8 +2,8 @@ xgboost:
   objective: 'reg:squarederror'
   booster: 'gbtree'              
   learning_rate: 0.3
-  max_depth: 6 
-  alpha: 8 
+  max_depth: 8 
+  alpha: 10 
   n_estimators: 40
   gamma: 3
   verbosity: 2

@@ -14,5 +14,12 @@ model_trainer:
   model_trainer_root: artifacts/model_trainer
   model_path: artifacts/model_trainer/model.pkl
   target: cost
+
+model_evaluation:
+  model_evaluation_root: artifacts/model_evaluation
+  model_path: artifacts/model_trainer/model.pkl
+  evaluation_score: artifacts/model_evaluation/score.json
+  test_data_path: artifacts/data_transformation/test.csv
+  target: cost
   
 

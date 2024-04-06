@@ -19,3 +19,13 @@ class ModelTrainerConfig:
     model_path: Path
     params: str
     target: str
+
+@dataclass 
+class ModelEvaluationConfig:
+    model_evaluation_root: Path
+    model_path: Path
+    evaluation_score: Path
+    test_data_path: Path
+    target: str
+    params: dict
+

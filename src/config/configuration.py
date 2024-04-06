@@ -1,6 +1,6 @@
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
-from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig
+from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvaluationConfig
 from pathlib import Path
 
 class Configuration:
@@ -44,6 +44,20 @@ class Configuration:
         target=config.target
         )
         return model_trainer_config
+    
+
+    def get_model_evaluation_config(self):
+        config= self.config.model_evaluation
+        model_eval_config=ModelEvaluationConfig(
+            model_evaluation_root=Path(config.model_evaluation_root),
+            model_path=Path(config.model_path),
+            evaluation_score=Path(config.evaluation_score),
+            test_data_path=Path(config.test_data_path),
+            target= config.target,
+            params= dict(self.params.xgboost)
+
+        )
+        return model_eval_config
 
 
         

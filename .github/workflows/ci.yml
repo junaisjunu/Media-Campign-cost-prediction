@@ -37,8 +37,8 @@ jobs:
       - name: Set up MLflow uri
         run: |
           export MLFLOW_TRACKING_URI=https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow
-          export MLFLOW_TRACKING_USERNAME= ${{ secrets.MLFLOW_TRACKING_USERNAME }} \
-          export MLFLOW_TRACKING_PASSWORD= ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+          export MLFLOW_TRACKING_USERNAME= junaisk456
+          export MLFLOW_TRACKING_PASSWORD= a4dcf1ebabde463c427fa51ac0272a6b4b0341e6
           echo $MLFLOW_TRACKING_USERNAME
           echo "set up completed"
       
@@ -79,8 +79,8 @@ jobs:
       - name: Set up MLflow uri
         run: |
           export MLFLOW_TRACKING_URI=https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow
-          export MLFLOW_TRACKING_USERNAME= ${{ secrets.MLFLOW_TRACKING_USERNAME }} \
-          export MLFLOW_TRACKING_PASSWORD= ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
+          export MLFLOW_TRACKING_USERNAME= junaisk456
+          export MLFLOW_TRACKING_PASSWORD= a4dcf1ebabde463c427fa51ac0272a6b4b0341e6
           echo $MLFLOW_TRACKING_USERNAME
           echo "set up completed"
 
@@ -120,7 +120,7 @@ jobs:
       - name: Set up MLflow uri
         run: |
           export MLFLOW_TRACKING_URI=https://dagshub.com/junaisk456/Media-Campign-cost-prediction.mlflow
-          export MLFLOW_TRACKING_USERNAME= ${{ secrets.MLFLOW_TRACKING_USERNAME }} \
+          export MLFLOW_TRACKING_USERNAME= ${{ secrets.MLFLOW_TRACKING_USERNAME }} 
           export MLFLOW_TRACKING_PASSWORD= ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
           echo $MLFLOW_TRACKING_USERNAME
           echo "set up completed"

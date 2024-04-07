@@ -1,6 +1,6 @@
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
-from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvaluationConfig
+from src.entity.config_entity import DataIngestionConfig,DataTransformationConfig,ModelTrainerConfig,ModelEvaluationConfig,PredictionConfig
 from pathlib import Path
 
 class Configuration:
@@ -58,6 +58,13 @@ class Configuration:
 
         )
         return model_eval_config
+    
+    def get_prediction_config(self):
+        config=self.config.prediction
+        prediction_config=PredictionConfig(
+            model_path=Path(config.model_path)
+        )
+        return prediction_config
 
 
         

@@ -29,3 +29,8 @@ class ModelEvaluationConfig:
     target: str
     params: dict
 
+
+@dataclass
+class PredictionConfig:
+    model_path:  Path
+

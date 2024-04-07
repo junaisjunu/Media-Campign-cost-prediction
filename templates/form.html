@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Form</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 600px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+    .form-group select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('data:image/svg+xml;utf8,<svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M11.293 6.293a1 1 0 011.414 0l4 4a1 1 0 11-1.414 1.414L12 9.414V17a1 1 0 11-2 0V9.414L6.707 11.707a1 1 0 01-1.414-1.414l4-4z" clip-rule="evenodd"></path></svg>');
+        background-repeat: no-repeat;
+        background-position: right 10px top 50%;
+        background-size: 12px;
+        cursor: pointer;
+    }
+    .form-group button {
+        margin: 20px auto; /* Center the button and add margin */
+        display: block;
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Enter Sales Data</h2>
+    <form action="/submit" method="post">
+        <div class="form-group">
+            <label for="store_sales">Store Sales (in millions):</label>
+            <input type="number" id="store_sales" name="store_sales" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="unit_sales">Unit Sales:</label>
+            <select id="unit_sales" name="unit_sales" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="total_children">Total Children:</label>
+            <select id="total_children" name="total_children" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="num_children_at_home">Number of Children at Home:</label>
+            <select id="num_children_at_home" name="num_children_at_home" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="avg_cars_at_home">Average Cars at Home (Approx):</label>
+            <select id="avg_cars_at_home" name="avg_cars_at_home" required>
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="gross_weight">Gross Weight:</label>
+            <input type="number" id="gross_weight" name="gross_weight" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="recyclable_package">Recyclable Package:</label>
+            <select id="recyclable_package" name="recyclable_package" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="low_fat">Low Fat:</label>
+            <select id="low_fat" name="low_fat" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="units_per_case">Units per Case:</label>
+            <input type="number" id="units_per_case" name="units_per_case" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="store_sqft">Store Square Footage:</label>
+            <input type="number" id="store_sqft" name="store_sqft" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="coffee_bar">Coffee Bar:</label>
+            <select id="coffee_bar" name="coffee_bar" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="video_store">Video Store:</label>
+            <select id="video_store" name="video_store" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="salad_bar">Salad Bar:</label>
+            <select id="salad_bar" name="salad" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="prepared_food">Prepared Food:</label>
+            <select id="prepared_food" name="food" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <label for="florist">Florist:</label>
+            <select id="florist" name="florist" required>
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </select>
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+
+    </form>
+</div>

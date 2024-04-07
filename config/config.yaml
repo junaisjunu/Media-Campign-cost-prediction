@@ -21,5 +21,9 @@ model_evaluation:
   evaluation_score: artifacts/model_evaluation/score.json
   test_data_path: artifacts/data_transformation/test.csv
   target: cost
+
+prediction:
+  model_path: artifacts/model_trainer/model.pkl
+
   
 

@@ -12,6 +12,7 @@ joblib
 types-PyYAML
 gdown
 xgboost
+flask
 
 -e .
 
